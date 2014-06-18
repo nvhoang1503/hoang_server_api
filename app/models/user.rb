@@ -23,10 +23,7 @@ class User < ActiveRecord::Base
       :id           => self.id,
       :email        => self.email,
       :is_online    => self.is_online,
-      :auth_token   => self.authentication_token,
-      :latitude     => self.latitude,
-      :longitude    => self.longitude,
-      :address      => self.address
+      :auth_token   => self.authentication_token
     }
   end
   def ensure_authentication_token

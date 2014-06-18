@@ -4,12 +4,11 @@ class Api::V1::SessionsController < Api::V1::BaseApiController
   api :POST, 'v1/users/sign_in', 'Sign in'
   param :email, String, :desc => "Your email", :required => true
   param :password, String, :desc => "Your password", :required => true
-  
+  example Api::V1::Docs::SessionsDoc.sign_in
   def create
     required :email, :password
     email = params[:email].strip.downcase
     resource = User.find_for_database_authentication(:email=> email)
-
     return invalid_login_attempt unless resource
     if resource.valid_password?(params[:password])
       #NOTE reset token to support force logout in the case of multiple logins
@@ -24,7 +23,11 @@ class Api::V1::SessionsController < Api::V1::BaseApiController
                         :user => @current_user
                       }
     else
-      render :json=> {:status => 401, :message => t('controller.sessions.create.wrong_username_or_password')}
+      render :json=> {
+        :status => 401, 
+        :message => t('controller.sessions.create.wrong_username_or_password'),
+        :errors  => t('controller.sessions.create.wrong_username_or_password'),
+      }
     end
   end
 

@@ -15,6 +15,7 @@ HoangServerApi::Application.routes.draw do
       resources :bookings, :only => [:create] do
         collection do
           put 'confirm'
+          get 'get_booking'
         end
       end
 

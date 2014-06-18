@@ -16,4 +16,18 @@ class Booking < ActiveRecord::Base
     :rejected   => 2
   }
 
+
+
+  def as_json(options = {})
+    {
+      :id         => self.id,
+      :user       => self.user,
+      :driver     => self.driver,
+      :status     => self.status,
+      :latitude   => self.latitude,
+      :longitude  => self.longitude,
+      :address    => self.address
+    }
+  end
+
 end

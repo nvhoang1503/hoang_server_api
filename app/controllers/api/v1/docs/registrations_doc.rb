@@ -1,8 +1,6 @@
 class Api::V1::Docs::RegistrationsDoc <  ActionController::Base
 
   def_param_group :registration do
-    param :device_token, String, :required => true
-    param :username, String, :required => true
     param :email, String, :required => true
     param :password, String, :required => true
     param :password_confirmation, String, :required => true

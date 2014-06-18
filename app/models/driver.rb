@@ -17,6 +17,32 @@ class Driver < ActiveRecord::Base
     :free    => 0,
     :busy    => 1
   }
+
+  GENDER = {
+    :female   => 0,
+    :male     => 1
+  }
+
+  GENDER_NAME = {
+    0    => "Female",
+    1    => "Male"
+  }
+
+  def as_json(options = {})
+    {
+      :id             => self.id,
+      :name           => self.name,
+      :gender         => GENDER_NAME[self.gender],
+      :birthday       => self.birthday,
+      :phone_number   => self.phone_number,
+      :taxi_number    => self.taxi_number,
+      :company        => self.company,
+      :seater_number  => self.sit_number,
+      :latitude       => self.latitude, 
+      :longitude      => self.longitude,
+      :address        => self.address
+    }
+  end
   
 
   def self.rand_code
