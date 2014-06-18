@@ -26,7 +26,8 @@ class Booking < ActiveRecord::Base
       :status     => self.status,
       :latitude   => self.latitude,
       :longitude  => self.longitude,
-      :address    => self.address
+      :address    => self.address,
+      :created_at => self.created_at
     }
   end
 

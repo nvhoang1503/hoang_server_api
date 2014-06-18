@@ -1,5 +1,18 @@
 class Api::V1::BookingsController < Api::V1::BaseApiController
   skip_before_filter :api_authenticate_user!
+
+  api :GET, 'v1/bookings/user_booking', 'Get list bookings of user'
+  param :auth_token, String, :desc => "auth_token of user", :required => true
+  example Api::V1::Docs::BookingsDoc.user_booking
+  def user_booking
+    required :auth_token
+    bookings = Booking.where(:user_id => current_user.id)
+    render json: {
+                  :status   => 200,
+                  :message  => "Successfully",
+                  :bookings => bookings
+                } 
+  end
   
   api :POST, 'v1/bookings', 'Booking a nearest taxi (If client do not input current location, system will get address of current user)'
   param :auth_token, String, :desc => "auth_token of user", :required => true

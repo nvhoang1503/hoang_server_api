@@ -16,6 +16,7 @@ HoangServerApi::Application.routes.draw do
         collection do
           put 'confirm'
           get 'get_booking'
+          get 'user_booking'
         end
       end
 
