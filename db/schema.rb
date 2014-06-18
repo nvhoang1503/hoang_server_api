@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140617064056) do
     t.float    "longitude"
     t.string   "address"
     t.integer  "current_guest"
-    t.integer  "status",        default: 1
+    t.integer  "status",        default: 0
     t.string   "driver_code"
     t.datetime "created_at"
     t.datetime "updated_at"
